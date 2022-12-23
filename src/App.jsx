@@ -1,32 +1,47 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
-import './App.css'
+import styles from './App.module.css'
+import Link from './Link.jsx'
+
+function getPageContent() {
+  let envVars = Object.entries(import.meta.env).filter((key) => key[0].startsWith('VITE_'))
+
+  const profilePic = envVars.find((val) => val[0] === 'VITE_PROFILE_PIC')[1]
+  const profilePicIndex = envVars.findIndex((val) => val[0] === 'VITE_PROFILE_PIC')
+
+  if (profilePicIndex !== -1) {
+    envVars.splice(profilePicIndex, 1)
+  }
+
+  const name = envVars.find((val) => val[0] === 'VITE_NAME')[1].replace(/_/g, ' ')
+  const nameIndex = envVars.findIndex((val) => val[0] === 'VITE_NAME')
+
+  if (nameIndex !== -1) {
+    envVars.splice(nameIndex, 1)
+  }
+
+  let links = envVars.map((k) => {
+    return [deEnvify(k[0]), k[1]]
+  })
+
+  return { name, profilePic, links }
+}
+
+function deEnvify(str) {
+  return str.replace('VITE_', '').replace('_LINK', '').toLowerCase().split('_').join(' ')
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  let pageContent = getPageContent()
+  document.title = `Links by ${pageContent.name}`
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className={styles.App}>
+      <img alt={pageContent.name} src={pageContent.profilePic} className={styles.propic} />
+      <p>{pageContent.name}</p>
+      {pageContent.links.map((l, index) => {
+        return <Link key={`link${index}`} name={l[0]} href={l[1]} />
+      })}
     </div>
   )
 }
