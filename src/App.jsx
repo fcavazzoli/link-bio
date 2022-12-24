@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import styles from './App.module.css'
 import Link from './Link.jsx'
+import DownloadLink from './DownloadLink.jsx'
 
 function getPageContent() {
   let envVars = Object.entries(import.meta.env).filter((key) => key[0].startsWith('VITE_'))
@@ -42,6 +43,7 @@ function App() {
       {pageContent.links.map((l, index) => {
         return <Link key={`link${index}`} name={l[0]} href={l[1]} />
       })}
+      <DownloadLink />
     </div>
   )
 }
