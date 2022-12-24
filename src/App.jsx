@@ -34,7 +34,7 @@ function deEnvify(str) {
 
 function App() {
   let pageContent = getPageContent()
-  document.title = `Links by ${pageContent.name}`
+  document.title = `${pageContent.name} - Home`
 
   return (
     <div className={styles.App}>
