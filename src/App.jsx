@@ -39,7 +39,7 @@ function App() {
   return (
     <div className={styles.App}>
       <img alt={pageContent.name} src={pageContent.profilePic} className={styles.propic} />
-      <p>{pageContent.name}</p>
+      <p className={styles.name}>{pageContent.name}</p>
       {pageContent.links.map((l, index) => {
         return <Link key={`link${index}`} name={l[0]} href={l[1]} />
       })}

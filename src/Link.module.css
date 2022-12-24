@@ -1,7 +1,7 @@
 .Link {
   display: block;
   border: 3px solid #2c3e50;
-  border-radius: 20px;
+  border-radius: 10px;
   max-width: 500px;
   padding: 5px;
   margin-top: 5px;
@@ -10,6 +10,8 @@
   text-decoration: none;
   color: #2c3e50;
   background: white;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 
 .Link:hover {

@@ -3,6 +3,12 @@
   text-align: center;
 }
 
+.name {
+  font-size: 2em;
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .propic {
   border-radius: 50%;
   max-width: 100px;
