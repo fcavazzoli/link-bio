@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './DownloadLink.module.css'
 
-const pdfPath = "../public/Federico Cavazzoli-CV.pdf"
+const pdfPath = "/Federico Cavazzoli-CV.pdf"
 
 function DownloadLink() {
   return (
