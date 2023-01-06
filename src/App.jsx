@@ -15,7 +15,6 @@ function getPageContent() {
   }
 
   const name = envVars.find((val) => val[0] === 'VITE_NAME')[1].replace(/_/g, ' ')
-  const meta = envVars.find((val) => val[0] === 'VITE_APP_TITLE')[1].replace(/_/g, ' ')
   const nameIndex = envVars.findIndex((val) => val[0] === 'VITE_NAME')
 
   if (nameIndex !== -1) {
@@ -26,7 +25,7 @@ function getPageContent() {
     return [deEnvify(k[0]), k[1]]
   })
 
-  return { name, profilePic, links, meta }
+  return { name, profilePic, links }
 }
 
 function deEnvify(str) {
@@ -36,9 +35,6 @@ function deEnvify(str) {
 function App() {
   let pageContent = getPageContent()
   document.title = `${pageContent.name} - Home`
-  document.createAttribute('meta');
-  document.querySelector('meta').setAttribute('name', 'description')
-  document.querySelector('meta[name="description"]').setAttribute('content', `The home page of ${pageContent.meta}`)
 
   return (
     <div className={styles.App}>
